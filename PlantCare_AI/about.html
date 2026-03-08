@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - PlantCare AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1DB584;
+            --primary-dark: #179968;
+            --primary-light: #2FD99F;
+            --accent: #FF6B5B;
+            --accent-light: #FFE5E0;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --gray: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 4%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-size: 1.3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-nav {
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-nav:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(29, 181, 132, 0.3);
+        }
+
+        /* Page Title */
+        .page-header {
+            padding: 4rem 4%;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(29, 181, 132, 0.05) 0%, rgba(255, 107, 91, 0.05) 100%);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section */
+        section {
+            padding: 4rem 4%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        /* Mission Section */
+        .mission {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .mission-content h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .mission-content p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .mission-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mission-icon {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(29, 181, 132, 0.1) 0%, rgba(29, 181, 132, 0.2) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            text-align: center;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .process-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .process-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .process-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* AI Model Section */
+        .ai-model {
+            background: linear-gradient(135deg, rgba(29, 181, 132, 0.05) 0%, rgba(255, 107, 91, 0.05) 100%);
+            padding: 4rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .model-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .model-card h4 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .model-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            margin-top: 3rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .benefit-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Button */
+        .section-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(29, 181, 132, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 4%;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .mission {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .model-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-model {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="home.html" class="logo">
+            <span>🌿</span> PlantCare AI
+        </a>
+        <ul class="nav-links">
+            <li><a href="home.html#features">Features</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="upload.html" class="btn-nav">Get Started</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>About Our Technology</h1>
+        <p>Transforming agriculture with artificial intelligence</p>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="mission-content">
+            <h3>Our Mission</h3>
+            <p>We're committed to revolutionizing plant disease management through cutting-edge artificial intelligence. Our goal is to empower farmers and agricultural professionals with the tools they need to detect diseases early, prevent crop loss, and maximize yields.</p>
+            <p>By leveraging advanced machine learning and computer vision technologies, PlantCare AI makes professional-grade disease detection accessible to everyone, from small-scale farmers to large agricultural operations.</p>
+        </div>
+        <div class="mission-image">
+            <div class="mission-icon">🌾</div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-number">1</div>
+                <h3>Upload Image</h3>
+                <p>Take a clear photo of the affected plant leaf and upload it to our platform.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">2</div>
+                <h3>AI Analysis</h3>
+                <p>Our advanced model analyzes the image and identifies potential diseases in seconds.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">3</div>
+                <h3>Get Results</h3>
+                <p>Receive detailed results with treatment recommendations and care instructions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Model Section -->
+    <section>
+        <h2>Our AI Model</h2>
+        <div class="ai-model">
+            <div class="model-grid">
+                <div class="model-card">
+                    <h4>Architecture</h4>
+                    <p>Deep Convolutional Neural Network trained on millions of plant images</p>
+                </div>
+                <div class="model-card">
+                    <h4>Training Data</h4>
+                    <p>Thousands of annotated plant disease images from research institutions</p>
+                </div>
+                <div class="model-card">
+                    <h4>Supported Plants</h4>
+                    <p>Tomato, Rice, Potato, Wheat, Corn, Cassava, and more</p>
+                </div>
+                <div class="model-card">
+                    <h4>Disease Coverage</h4>
+                    <p>3000+ plant diseases and conditions identified with high accuracy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <h2>Why Choose PlantCare AI?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Early Detection</h3>
+                <p>Catch diseases before they spread to your entire crop</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Cost Effective</h3>
+                <p>Reduce losses and optimize resource allocation</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🌍</div>
+                <h3>Sustainable</h3>
+                <p>Make informed decisions for environmentally responsible farming</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⚙️</div>
+                <h3>Fast & Accurate</h3>
+                <p>95% accuracy with instant analysis and detailed insights</p>
+            </div>
+        </div>
+
+        <div class="section-cta">
+            <a href="upload.html" class="btn-primary">Try It Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 PlantCare AI. All rights reserved. | Empowering agriculture through innovative AI solutions</p>
+    </footer>
+</body>
+</html>
