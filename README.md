@@ -49,6 +49,13 @@ pip install tensorflow numpy matplotlib
 ```
 
 3. Run the training or prediction script in Python or Google Colab.
+## Screenshots
+
+### Training Accuracy
+![Training Accuracy](images/Training accuracy graph.jpeg)
+
+### Training Loss
+![Training Loss](images/Training accuracy graph.jpeg)
 
 ## Future Improvements
 
@@ -59,7 +66,7 @@ pip install tensorflow numpy matplotlib
 
 ## Author
 
-Kritika Sah
-Surya Bharadwaj
-Vaishnavi Shrivastava
+Kritika Sah.
+Surya Bharadwaj.
+Vaishnavi Shrivastava.
 Keerty Narote
